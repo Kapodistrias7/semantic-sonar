@@ -1,0 +1,17 @@
+{
+  "name": "semantic-sonar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node serve.mjs 8123",
+    "gen-embeddings": "node scripts/gen-embeddings.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.2"
+  }
+}

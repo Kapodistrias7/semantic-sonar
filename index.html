@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0f24">
+  <meta name="description" content="Semantic Sonar — a daily word-guessing game powered by word embeddings.">
+  <title>Semantic Sonar</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <h1 class="logo">Semantic&nbsp;Sonar</h1>
+      <p class="tagline">Ping the lexicon. Echo-locate today's word.</p>
+      <div id="model-status" class="status status-loading" role="status">Loading lexicon…</div>
+    </header>
+
+    <main class="main">
+      <section id="latest" class="latest hidden" aria-live="polite">
+        <div class="latest-row">
+          <span id="latest-word" class="latest-word"></span>
+          <span id="latest-score" class="latest-score"></span>
+        </div>
+        <div class="bar bar-big"><div id="latest-bar" class="bar-fill"></div></div>
+        <div id="latest-hint" class="latest-hint"></div>
+      </section>
+
+      <ol id="history" class="history" aria-label="Past guesses, warmest first"></ol>
+      <div id="empty" class="empty">
+        <span class="empty-emoji">📡</span>
+        <p>Type any word below to send out your first ping.<br>
+        Warmer echoes mean you're conceptually closer.</p>
+      </div>
+    </main>
+
+    <form id="guess-form" class="dock" autocomplete="off">
+      <input id="guess-input" type="text" inputmode="latin" autocapitalize="none"
+             autocomplete="off" autocorrect="off" spellcheck="false"
+             placeholder="Type a word…" maxlength="30" enterkeyhint="go"
+             aria-label="Your guess" disabled>
+      <button id="guess-btn" type="submit" disabled>Ping</button>
+    </form>
+  </div>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <div id="win-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-card">
+      <div class="win-emoji">🎯</div>
+      <h2 id="win-title">Echo located!</h2>
+      <p class="win-word">The word was <strong id="win-word"></strong></p>
+      <p class="win-stats">Solved in <strong id="win-count"></strong> guess<span id="win-plural">es</span></p>
+      <div id="win-grid" class="win-grid" aria-label="Warmth progression"></div>
+      <button id="share-btn" class="share-btn" type="button">📋 Share result</button>
+      <p class="win-foot">A new word surfaces tomorrow.</p>
+    </div>
+  </div>
+
+  <script type="importmap">
+  { "imports": { "onnxruntime-web/webgpu": "./vendor/ort.webgpu.bundle.min.mjs", "onnxruntime-common": "./vendor/ort.webgpu.bundle.min.mjs" } }
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

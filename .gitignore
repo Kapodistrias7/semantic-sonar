@@ -1,0 +1,3 @@
+node_modules/
+dist/
+models/all-MiniLM-L6-v2/onnx/model.onnx
